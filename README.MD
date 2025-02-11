@@ -5,7 +5,9 @@
 ## Features
 
 ✅ **Bubble Sort** - Animated visualization with step-by-step explanation  
+✅ **Selection Sort** - Animated visualization with step-by-step explanation  
 ✅ **User Customization** - Adjust **array size** and **swap speed**  
+✅ **Unique Box Animations** - Visualizing algorithms through animated boxes.  
 🚀 More sorting algorithms coming soon!
 
 ## Technologies Used
@@ -16,7 +18,6 @@
 ## Installation
 
 1. Clone the repository:  
-   <br>
    git clone https://github.com/SairajShinde1/SortAlgoZone.git
    <br>
    cd SortAlgoZone
@@ -31,11 +32,11 @@
 
 ## How It Works
 
-1. Select a sorting algorithm from the menu (Currently only Bubble Sort).
+1. Select a sorting algorithm from the menu (Currently only Bubble Sort & Selection Sort).
 2. Adjust array size and swap speed using the provided sliders & Generate the Array.
 3. Click the "Start Sorting" button to visualize the process.
 4. Watch the step-by-step animation and read the explanation alongside.
 
 ## To-Do
 
-- Implement Selection Sort, Insertion Sort, Merge Sort, and more
+- Implement Insertion Sort, Merge Sort, and more
