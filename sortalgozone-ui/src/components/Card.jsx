@@ -99,6 +99,37 @@ const Card = ({ darkMode }) => {
         } else {
           box.style.backgroundColor = "blue";
         }
+      } else if (algo === "Insertion Sort") {
+        if (isSorted) {
+          box.style.backgroundColor = "green"; // ✅ Final sorted color
+        } else if (move && move.indices.includes(i)) {
+          if (move.type === "comp") {
+            box.style.backgroundColor = "orange"; // 🔶 Comparison color
+            animate(
+              box,
+              { scale: [1, 0.8] },
+              { ease: "linear", duration: 0.5 }
+            );
+          } else if (move.type === "shift") {
+            box.style.backgroundColor = "red"; // 🔴 Shift color
+            animate(
+              box,
+              { scale: [0.8, 1.2] },
+              { ease: "linear", duration: 0.5 }
+            );
+          } else if (move.type === "insert") {
+            box.style.backgroundColor = "purple"; // 🟡 Inserted value color
+            animate(
+              box,
+              { scale: [1, 1.3, 1] },
+              { ease: "linear", duration: 0.5 }
+            );
+          }
+        } else if (move && i <= move.sortedIndex) {
+          box.style.backgroundColor = "green"; // ✅ Sorted portion color
+        } else {
+          box.style.backgroundColor = "blue"; // 🔵 Default color
+        }
       }
     }
   };
@@ -194,6 +225,36 @@ const Card = ({ darkMode }) => {
         });
       }
       console.log(array);
+    } else if (algo === "Insertion Sort") {
+      for (let i = 1; i < array.length; i++) {
+        let temp = array[i];
+        let j = i - 1;
+        for (; j >= 0; j--) {
+          moves.push({
+            indices: [j, i],
+            type: "comp",
+            sortedIndex: i - 1,
+          });
+          if (array[j] > temp) {
+            array[j + 1] = array[j];
+            moves.push({
+              indices: [j + 1, j],
+              type: "shift",
+              sortedIndex: i - 1,
+            });
+          } else {
+            break;
+          }
+        }
+
+        array[j + 1] = temp;
+        moves.push({
+          indices: [j + 1],
+          type: "insert",
+          sortedIndex: i - 1,
+          value: temp,
+        });
+      }
     }
     // showBoxes();
     console.log(array);
@@ -213,6 +274,11 @@ const Card = ({ darkMode }) => {
     const [i, j] = move.indices;
     if (move.type === "swap") {
       [array[i], array[j]] = [array[j], array[i]];
+    } else if (move.type === "shift") {
+      array[i] = array[j];
+    } else if (move.type === "insert") {
+      const temp = move.value; // Retrieve stored temp value
+      array[i] = temp; // Insert it at the correct position
     }
 
     showBoxes(array, move);
@@ -248,11 +314,29 @@ const Card = ({ darkMode }) => {
             <option className="" value="Quick Sort">
               Quick Sort
             </option> */}
-            <option className="" value="Bubble Sort">
+            <option
+              className={
+                darkMode ? "bg-[#1c1c1c] text-white" : "bg-white text-black"
+              }
+              value="Bubble Sort"
+            >
               Bubble Sort
             </option>
-            <option className="" value="Selection Sort">
+            <option
+              className={
+                darkMode ? "bg-[#1c1c1c] text-white" : "bg-white text-black"
+              }
+              value="Selection Sort"
+            >
               Selection Sort
+            </option>
+            <option
+              className={
+                darkMode ? "bg-[#1c1c1c] text-white" : "bg-white text-black"
+              }
+              value="Insertion Sort"
+            >
+              Insertion Sort
             </option>
           </select>
 
@@ -315,7 +399,6 @@ const Card = ({ darkMode }) => {
           {sortClicked ? (
             <div className="w-full">
               {" "}
-              <p className="text-center">Explaination :{algo}</p>
               {algo === "Bubble Sort" ? (
                 <div className="flex justify-center gap-3 m-5">
                   <div>
@@ -382,6 +465,46 @@ const Card = ({ darkMode }) => {
                       <li>
                         <b>Move to the Next Element:</b> The sorted part of the
                         array grows by one element, and the unsorted part
+                        shrinks.
+                      </li>
+                      <li>
+                        <b>Repeat Until Sorted.</b>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+              ) : algo === "Insertion Sort" ? (
+                <div className="flex justify-center gap-5 m-5">
+                  <div>
+                    <p>🔵 Blue → Unsorted Part</p>
+                    <p>🟠 Orange → When comparing</p>
+                    <p> 🔴 Red → When shifting an element</p>
+                    <p>🟣 When inserting an element into its final position</p>
+                    <p>🟢 Green → Sorted portion (final position)</p>
+                  </div>
+                  <div>
+                    <div>
+                      <strong className="text-xl text-gray-500">
+                        Insertion Sort Explanation
+                      </strong>
+                      <li>
+                        <b>Pick the Next Element:</b> Start from the second
+                        element and pick it as the "key" (since the first
+                        element is already considered sorted).
+                      </li>
+                      <li>
+                        <b>Compare and Shift:</b>🟠Compare the key with elements
+                        in the sorted part (to its left). 🔴Shift elements one
+                        position right if they are greater than the key.
+                      </li>
+                      <li>
+                        <b>Insert at the Correct Position:</b>🟣Once the correct
+                        position is found, insert the key into its place.
+                        shrinks.
+                      </li>
+                      <li>
+                        <b> Expand the Sorted Part:</b>🟢The sorted portion of
+                        the array grows by one element, and the unsorted part
                         shrinks.
                       </li>
                       <li>

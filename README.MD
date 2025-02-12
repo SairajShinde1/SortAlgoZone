@@ -6,6 +6,7 @@
 
 ✅ **Bubble Sort** - Animated visualization with step-by-step explanation  
 ✅ **Selection Sort** - Animated visualization with step-by-step explanation  
+✅ **Insertion Sort** - Animated visualization with step-by-step explanation  
 ✅ **User Customization** - Adjust **array size** and **swap speed**  
 ✅ **Unique Box Animations** - Visualizing algorithms through animated boxes.  
 🚀 More sorting algorithms coming soon!
@@ -32,11 +33,11 @@
 
 ## How It Works
 
-1. Select a sorting algorithm from the menu (Currently only Bubble Sort & Selection Sort).
+1. Select a sorting algorithm from the menu.
 2. Adjust array size and swap speed using the provided sliders & Generate the Array.
 3. Click the "Start Sorting" button to visualize the process.
 4. Watch the step-by-step animation and read the explanation alongside.
 
 ## To-Do
 
-- Implement Insertion Sort, Merge Sort, and more
+- Implement Quick Sort, Merge Sort, and more
