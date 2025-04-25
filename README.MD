@@ -16,6 +16,9 @@
 - **HTML**, **CSS**, **JavaScript**
 - **React.js**
 
+## Live Demo
+https://sort-algo-zone.vercel.app/
+
 ## Installation
 
 1. Clone the repository:  
